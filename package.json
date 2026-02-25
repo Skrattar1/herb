@@ -1,0 +1,30 @@
+{
+  "name": "herb-tests",
+  "version": "1.0.0",
+  "description": "Автотесты для интернет-магазина Herb",
+  "type": "module",
+  "scripts": {
+    "test": "npx playwright test",
+    "test:ui": "npx playwright test --ui",
+    "test:headed": "npx playwright test --headed",
+    "test:debug": "npx playwright test --debug",
+    "test:auth": "npx playwright test tests/auth.spec.js",
+    "test:auth:headed": "npx playwright test tests/auth.spec.js --headed",
+    "test:reg": "npx playwright test tests/reg.spec.js",
+    "test:reg:headed": "npx playwright test tests/reg.spec.js --headed",
+    "test:report": "npx playwright show-report",
+    "test:codegen": "npx playwright codegen https://herb.tproject.su",
+    "lint": "tests/node_modules/.bin/eslint ",
+    "lint:fix": "tests/node_modules/.bin/eslint  --fix",
+    "format": "tests/node_modules/.bin/prettier --write ",
+    "clean": "rm -rf tests/test-results playwright-report",
+    "prepare": "tests/node_modules/.bin/husky install"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.40.1",
+    "eslint-plugin-playwright": "^0.22.2",
+    "husky": "^8.0.3",
+    "prettier": "^3.1.1",
+    "dotenv": "^17.3.1"
+  }
+}
