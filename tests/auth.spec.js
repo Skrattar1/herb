@@ -112,12 +112,17 @@ test.describe('Авторизация пользователя', () => {
 
 test.describe('Негативные сценарии', () => {
 
+    test.beforeEach(async ({page}) => {
+        const loginModal = new LoginModalPage(page);
+        await loginModal.navigate();
+    });
+
     test('Ошибка при неверном пароле', async ({ page }) => {
         const loginModal = new LoginModalPage(page);
-        const { email, wrongPassword } = EnvHelper.getCredentials();
+        const { email, password } = EnvHelper.getCredentials();
 
         await loginModal.openModal();
-        await loginModal.loginWithCredentials(email, wrongPassword);
+        await loginModal.loginWithCredentials(email, '123');
 
         await loginModal.waitForError();
         await expect(loginModal.errorMessage).toBeVisible();
@@ -133,7 +138,7 @@ test.describe('Негативные сценарии', () => {
 
         await loginModal.waitForEmptyEmail();
         await expect(loginModal.emptyEmail).toBeVisible();
-        await expect(loginModal.emptyEmail).toHaveText(ERROR_MESSAGES.EMPTY_EMAIL_FIELD);
+        await expect(loginModal.emptyEmail).toHaveText(ERROR_MESSAGES.EMPTY_EMAIL);
     });
 
     test('Ошибка при пустом поле пароля', async ({ page }) => {
@@ -145,6 +150,6 @@ test.describe('Негативные сценарии', () => {
 
         await loginModal.waitForEmptyPassword();
         await expect(loginModal.emptyPassword).toBeVisible();
-        await expect(loginModal.emptyPassword).toHaveText(ERROR_MESSAGES.EMPTY_PASSWORD_FIELD);
+        await expect(loginModal.emptyPassword).toHaveText(ERROR_MESSAGES.EMPTY_PASSWORD);
     });
 });

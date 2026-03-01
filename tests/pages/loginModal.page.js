@@ -3,11 +3,11 @@ class LoginModalPage {
 
         //Элементы страницы
         this.page = page;
+        this.mainLoginButton = page.locator('span.user-auth__item');
         this.welcomeModal = page.locator('div.modal__login');
         this.emailInput = page.locator('input[type="email"]');
         this.passwordInput = page.locator('input[type="password"]');
         this.loginButton = page.getByRole('button', { name: 'Войти в аккаунт', exact: true });
-        this.mainLoginButton = page.locator('span.user-auth__item');
         this.registerButton = page.locator('a.modal__login-link')
             .filter({ hasText: 'Зарегистрируйтесь' });
         this.resetPasswordButton = page.locator('button', { hasText: 'Восстановить пароль' });
@@ -39,6 +39,10 @@ class LoginModalPage {
         await this.emailInput.fill(email);
         await this.passwordInput.fill(password);
         await this.loginButton.click();
+    }
+
+    async registerButtonClick() {
+        await this.registerButton.click();
     }
 
     async waitForError(timeout = 50000) {

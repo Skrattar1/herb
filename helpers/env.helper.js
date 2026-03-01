@@ -21,20 +21,32 @@ class EnvHelper {
         return this.decodeBase64(process.env.PASSWORD_BASE64);
     }
 
-    static getWrongPassword() {
-        return process.env.WRONG_PASSWORD;
+    static getEmptyPassword() {
+        return process.env.EMPTY_PASSWORD;
     }
 
     static getWrongEmail () {
         return process.env.WRONG_EMAIL;
     }
 
-    static getWrongNumber () {
-        return process.env.WRONG_NUMBER;
+    static getEmptyNumber () {
+        return process.env.EMPTY_NUMBER;
     }
 
     static getInvalidEmail() {
         return process.env.INVALID_EMAIL;
+    }
+
+    static getEmptyEmail() {
+        return process.env.EMPTY_EMAIL;
+    }
+
+    static getShortPassword() {
+        return process.env.SHORT_PASSWORD;
+    }
+
+    static getWrongNumber() {
+        return process.env.WRONG_NUMBER;
     }
 
     static getFirstName() {
@@ -53,13 +65,15 @@ class EnvHelper {
         return {
             email: this.getEmail(),
             password: this.getPassword(),
-            wrongPassword: this.getWrongPassword(),
+            emptyPassword: this.getEmptyPassword(),
             wrongEmail: this.getWrongEmail(),
             invalidEmail: this.getInvalidEmail(),
             phoneNumber: this.getPhoneNumber(),
             firstName: this.getFirstName(),
             lastName: this.getLastName(),
-            wrongNumber: this.getWrongNumber(),
+            emptyNumber: this.getEmptyNumber(),
+            emptyEmail: this.getEmptyEmail(),
+            shortPassword: this.getShortPassword(),
         };
     }
 
